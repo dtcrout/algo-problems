@@ -17,7 +17,7 @@ fn main() {
     let n = 7;  // number of socks
     let arr = [1, 2, 1, 2, 1, 3, 2];  // socks
 
-    // Find max value in order to create auxillary array
+    // Find max value in order to create auxillary array; O(n)
     let mut n_colors = arr[0];
 
     for i in 1..arr.len() {
@@ -27,7 +27,8 @@ fn main() {
     }
 
     // Create auxillary array to hold counts of pairs
-    let mut c = [0; n_colors];
+    // Arrays cannot be dynamic, therefore we need to use vector
+    let mut c = vec![0; n_colors];
 
     // Count each sock; O(n)
     for i in 0..n {
@@ -36,14 +37,14 @@ fn main() {
     }
 
     // Divide each pair by 2 to get the count; O(n)
-    for i in 0..max_color {
+    for i in 0..n_colors {
         c[i] = c[i] / 2;
     }
 
     // Add all the pairs; O(n)
     let mut n_pairs = 0;
 
-    for i in 0..max_color {
+    for i in 0..n_colors {
         n_pairs = n_pairs + c[i];
     }
 
